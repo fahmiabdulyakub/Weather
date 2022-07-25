@@ -1,2 +1,3 @@
 import Weather from './Weather';
-export {Weather};
+import WeatherDetails from './WeatherDetails';
+export {Weather, WeatherDetails};

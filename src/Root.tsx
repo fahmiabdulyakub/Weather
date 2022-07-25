@@ -3,9 +3,10 @@ import {SafeAreaView, StatusBar, StyleSheet} from 'react-native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NavigationContainer} from '@react-navigation/native';
 import {Colors} from 'themes';
-import {Weather} from 'screens';
+import {Weather, WeatherDetails} from 'screens';
+import {StackParams} from 'types/navigationType';
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<StackParams>();
 
 export const Routes = () => {
   return (
@@ -18,6 +19,15 @@ export const Routes = () => {
             component={Weather}
             options={{
               title: 'Weather App',
+              headerStyle: styles.header,
+              headerTintColor: Colors.white,
+            }}
+          />
+          <Stack.Screen
+            name="WeatherDetails"
+            component={WeatherDetails}
+            options={{
+              title: 'Weather Details',
               headerStyle: styles.header,
               headerTintColor: Colors.white,
             }}
