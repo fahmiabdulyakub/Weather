@@ -6,20 +6,21 @@ import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {StackParams} from 'types/navigationType';
 import {getData} from 'services';
 import {Map} from 'constants/Map';
+import {CardWeather} from 'components';
 
 const Weather = () => {
   const navigation = useNavigation<NativeStackNavigationProp<StackParams>>();
 
   useEffect(() => {
-    getData(Map.latitude, Map.longitude).then(result => {
-      console.log(result);
-    });
+    // getData(Map.latitude, Map.longitude).then(result => {
+    //   console.log(result);
+    // });
   }, []);
 
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={() => navigation.navigate('WeatherDetails')}>
-        <Text>Weather</Text>
+        <CardWeather />
       </TouchableOpacity>
     </View>
   );
