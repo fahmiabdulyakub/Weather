@@ -25,7 +25,7 @@ const WeatherDetails = ({route}: Props) => {
         />
       </View>
       <Text style={styles.main}>
-        {data.weather[0].main + ' (' + data.weather[0].main + ')'}
+        {data.weather[0].main + ' (' + data.weather[0].description + ')'}
       </Text>
       <View style={styles.tempMinMaxContainer}>
         <View>

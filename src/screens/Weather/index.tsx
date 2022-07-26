@@ -1,5 +1,5 @@
 import {FlatList, View} from 'react-native';
-import React, {useEffect} from 'react';
+import React, {useEffect, memo} from 'react';
 import styles from './styles';
 import {useNavigation} from '@react-navigation/core';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
@@ -50,6 +50,7 @@ const Weather = () => {
   return (
     <View style={styles.container}>
       <FlatList
+        maxToRenderPerBatch={10}
         refreshing={refresh}
         onRefresh={onRefresh}
         onEndReachedThreshold={0}
@@ -63,4 +64,4 @@ const Weather = () => {
   );
 };
 
-export default Weather;
+export default memo(Weather);
