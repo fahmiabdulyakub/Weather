@@ -1,3 +1,4 @@
 import CardWeather from './CardWeather';
+import FooterPagination from './FooterPagination';
 
-export {CardWeather};
+export {CardWeather, FooterPagination};
