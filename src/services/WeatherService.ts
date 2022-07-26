@@ -5,7 +5,7 @@ export const getData = (lan: number, lon: number) => {
   return new Promise(resolve => {
     axios
       .get(
-        `${Config.BASE_URL}data/2.5/forecast?lat=${lan}&lon=${lon}&appid=${Config.API_KEY}`,
+        `${Config.BASE_URL}data/2.5/forecast?lat=${lan}&lon=${lon}&appid=${Config.API_KEY}&units=metric`,
       )
       .then(result => {
         resolve(result.data);

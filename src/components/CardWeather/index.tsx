@@ -4,7 +4,7 @@ import styles from './styles';
 import Config from 'react-native-config';
 import {PropsType} from './types';
 
-const CardWeather = ({onPress, dateTime, icon}: PropsType) => {
+const CardWeather = ({onPress, dateTime, icon, main, temp}: PropsType) => {
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
       <Image
@@ -13,8 +13,8 @@ const CardWeather = ({onPress, dateTime, icon}: PropsType) => {
       />
       <View style={styles.descriptionContainer}>
         <Text style={styles.textDate}>{dateTime}</Text>
-        <Text style={styles.textMain}>Clouds</Text>
-        <Text style={styles.textTemp}>Temp: 32.1°C</Text>
+        <Text style={styles.textMain}>{main}</Text>
+        <Text style={styles.textTemp}>{'Temp: ' + temp + '°C'}</Text>
       </View>
     </TouchableOpacity>
   );

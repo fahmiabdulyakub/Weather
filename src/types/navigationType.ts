@@ -1,4 +1,7 @@
+import {ListEntityType} from 'types/globalType';
 export type StackParams = {
   Weather: any;
-  WeatherDetails: any;
+  WeatherDetails: {
+    data: ListEntityType;
+  };
 };

@@ -1,4 +1,4 @@
-import {FlatList, TouchableOpacity, View} from 'react-native';
+import {FlatList, View} from 'react-native';
 import React, {useEffect} from 'react';
 import styles from './styles';
 import {useNavigation} from '@react-navigation/core';
@@ -33,31 +33,32 @@ const Weather = () => {
     });
   };
 
-  const renderCard = (item: ListEntityType) => {
-    const dateTime = dayjs(item.dt_txt).format('ddd, MMM D, YYYY h:mm A');
+  const renderCard = (data: ListEntityType) => {
+    const dateTime = dayjs(data.dt_txt).format('ddd, MMM D, YYYY h:mm A');
+    const temp = data.main.temp.toString();
     return (
       <CardWeather
         dateTime={dateTime}
-        icon={item?.weather[0].icon}
-        onPress={() => navigation.navigate('WeatherDetails')}
+        icon={data?.weather[0].icon}
+        main={data?.weather[0].main}
+        temp={temp.substring(0, 4)}
+        onPress={() => navigation.navigate('WeatherDetails', {data})}
       />
     );
   };
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={() => navigation.navigate('WeatherDetails')}>
-        <FlatList
-          refreshing={refresh}
-          onRefresh={onRefresh}
-          onEndReachedThreshold={0}
-          showsVerticalScrollIndicator={false}
-          keyExtractor={(item, index) => index.toString()}
-          data={weather?.list}
-          renderItem={({item}) => renderCard(item)}
-          ListFooterComponent={<FooterPagination isLoading={isLoading} />}
-        />
-      </TouchableOpacity>
+      <FlatList
+        refreshing={refresh}
+        onRefresh={onRefresh}
+        onEndReachedThreshold={0}
+        showsVerticalScrollIndicator={false}
+        keyExtractor={(item, index) => index.toString()}
+        data={weather?.list}
+        renderItem={({item}) => renderCard(item)}
+        ListFooterComponent={<FooterPagination isLoading={isLoading} />}
+      />
     </View>
   );
 };
