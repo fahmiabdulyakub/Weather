@@ -2,21 +2,21 @@ export interface WeatherType {
   cod: string;
   message: number;
   cnt: number;
-  list?: ListEntity[] | null;
+  list?: ListEntityType[] | null;
   city: City;
 }
-export interface ListEntity {
+export interface ListEntityType {
   dt: number;
-  main: Main;
-  weather?: WeatherEntity[] | null;
-  clouds: Clouds;
-  wind: Wind;
+  main: MainType;
+  weather: WeatherEntityType[];
+  clouds: CloudsType;
+  wind: WindType;
   visibility: number;
   pop: number;
-  sys: Sys;
+  sys: SysType;
   dt_txt: string;
 }
-export interface Main {
+export interface MainType {
   temp: number;
   feels_like: number;
   temp_min: number;
@@ -27,21 +27,21 @@ export interface Main {
   humidity: number;
   temp_kf: number;
 }
-export interface WeatherEntity {
+export interface WeatherEntityType {
   id: number;
   main: string;
   description: string;
   icon: string;
 }
-export interface Clouds {
+export interface CloudsType {
   all: number;
 }
-export interface Wind {
+export interface WindType {
   speed: number;
   deg: number;
   gust: number;
 }
-export interface Sys {
+export interface SysType {
   pod: string;
 }
 export interface City {

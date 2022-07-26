@@ -1,4 +1,4 @@
-import {FlatList, Text, TouchableOpacity, View} from 'react-native';
+import {FlatList, TouchableOpacity, View} from 'react-native';
 import React, {useEffect} from 'react';
 import styles from './styles';
 import {useNavigation} from '@react-navigation/core';
@@ -8,7 +8,8 @@ import {getData} from 'services';
 import {Map} from 'constants/Map';
 import {CardWeather, FooterPagination} from 'components';
 import {useState} from 'react';
-import {WeatherType} from 'types/globalType';
+import {ListEntityType, WeatherType} from 'types/globalType';
+import dayjs from 'dayjs';
 
 const Weather = () => {
   const [weather, setWeather] = useState<WeatherType>();
@@ -32,6 +33,17 @@ const Weather = () => {
     });
   };
 
+  const renderCard = (item: ListEntityType) => {
+    const dateTime = dayjs(item.dt_txt).format('ddd, MMM D, YYYY h:mm A');
+    return (
+      <CardWeather
+        dateTime={dateTime}
+        icon={item?.weather[0].icon}
+        onPress={() => navigation.navigate('WeatherDetails')}
+      />
+    );
+  };
+
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={() => navigation.navigate('WeatherDetails')}>
@@ -42,11 +54,7 @@ const Weather = () => {
           showsVerticalScrollIndicator={false}
           keyExtractor={(item, index) => index.toString()}
           data={weather?.list}
-          renderItem={({item}) => (
-            <CardWeather
-              onPress={() => navigation.navigate('WeatherDetails')}
-            />
-          )}
+          renderItem={({item}) => renderCard(item)}
           ListFooterComponent={<FooterPagination isLoading={isLoading} />}
         />
       </TouchableOpacity>
