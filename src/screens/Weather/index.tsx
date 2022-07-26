@@ -20,7 +20,7 @@ const Weather = () => {
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={() => navigation.navigate('WeatherDetails')}>
-        <CardWeather />
+        <CardWeather onPress={() => navigation.navigate('WeatherDetails')} />
       </TouchableOpacity>
     </View>
   );
